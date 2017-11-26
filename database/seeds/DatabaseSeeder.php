@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use App\Plan;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +14,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Plan::insert([
+            [
+                'name' => 'small',
+                'price' => 10,
+            ],
+            [
+                'name' => 'medium',
+                'price' => 20,
+            ],
+            [
+                'name' => 'big',
+                'price' => 30,
+            ]
+        ]);
+        User::insert([
+            [
+                'name' => 'some name',
+                'plan_id' => 1,
+                'email' => 'test@mail.com',
+                'password' => 12341234,
+            ],
+            [
+                'name' => 'some name',
+                'plan_id' => 2,
+                'email' => 'test1@mail.com',
+                'password' => 12341234,
+            ],
+            [
+                'name' => 'some name',
+                'plan_id' => 3,
+                'email' => 'test2@mail.com',
+                'password' => 12341234,
+            ]
+        ]);
     }
 }
