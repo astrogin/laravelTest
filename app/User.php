@@ -35,4 +35,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Plan');
     }
 
+    public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
 }

@@ -50,4 +50,11 @@ class BraintreePaymentService implements PaymentSystemInterface
         );
         return $answer;
     }
+
+    public function find($id)
+    {
+        $transaction = \Braintree_Transaction::find($id);
+        return $transaction;
+    }
+
 }

@@ -31,19 +31,16 @@ class DatabaseSeeder extends Seeder
         User::insert([
             [
                 'name' => 'some name',
-                'plan_id' => 1,
                 'email' => 'test@mail.com',
                 'password' => 12341234,
             ],
             [
                 'name' => 'some name',
-                'plan_id' => 2,
                 'email' => 'test1@mail.com',
                 'password' => 12341234,
             ],
             [
                 'name' => 'some name',
-                'plan_id' => 3,
                 'email' => 'test2@mail.com',
                 'password' => 12341234,
             ]

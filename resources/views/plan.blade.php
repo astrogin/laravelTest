@@ -5,8 +5,15 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Plans</div>
-
+                    <div class="panel-heading">
+                        @if(!isset($userPlan))
+                            <div style="display: inline-block; color: red;">
+                                Buy some plan!
+                            </div>
+                        @else
+                            Plans
+                        @endif
+                    </div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -16,9 +23,9 @@
                         <div class="container">
                             @foreach($plans as $plan)
                                 <div style="margin-left: 50px">
-                                    @if($plan->name === $userPlan->name)
+                                    @if(isset($userPlan) && $plan->name === $userPlan->name)
                                         <div style="display: inline-block; color: red;">
-                                            {{$plan->name}}
+                                            Your plan : {{$plan->name}}
                                         </div>
                                     @else
                                         <div style="display: inline-block;">
