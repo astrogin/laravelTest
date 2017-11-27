@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Plan;
 use App\Services\PaymentSystems\TokenInterface;
 use Illuminate\Support\Facades\Auth;
@@ -29,12 +30,20 @@ class HomeController extends Controller
         $userPlan = $user->plan()->first();
         $allPlans = Plan::all();
         $token = $token->getToken();
+        $processingPlan = Order::where([
+            ['user_id', $user->id],
+            ['status', 'processing']
+        ])->latest()->first();
+        if ($processingPlan) {
+            $processingPlan = $processingPlan->plan_id;
+        }
         return view('plan')
             ->with([
                 'plans' => $allPlans,
                 'userPlan' => $userPlan,
                 'user' => $user,
-                'token' => $token
+                'token' => $token,
+                'planId' => $processingPlan,
             ]);
     }
 }

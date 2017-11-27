@@ -27,6 +27,10 @@
                                         <div style="display: inline-block; color: red;">
                                             Your plan : {{$plan->name}}
                                         </div>
+                                    @elseif (isset($planId) && $plan->id === $planId)
+                                        <div style="display: inline-block; color: limegreen;">
+                                            This plan now processing : {{$plan->name}}
+                                        </div>
                                     @else
                                         <div style="display: inline-block;">
                                             {{$plan->name}}
@@ -42,7 +46,7 @@
             </div>
         </div>
     </div>
-    <form id="checkout" method="post" action="{{route('pay')}}">
+    <form class="forms" id="checkout" method="post" action="{{route('pay')}}">
         <div id="payment-form"></div>
         <input type="hidden" name="type" id="type" value="">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -52,6 +56,10 @@
     <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
     <script>
         function pay(button) {
+            var anotherForm = document.getElementById('braintree-dropin-frame');
+            if (anotherForm) {
+                anotherForm.remove();
+            }
             var clientToken = "{{$token}}";
             var el = document.getElementById('pay');
             var hidden = document.getElementById('type');

@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/pay','PayController@pay')->name('pay');
+Route::post('/pay', 'PayController@pay')->name('pay');

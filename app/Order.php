@@ -10,6 +10,7 @@ class Order extends Model
         'plan_id',
         'user_id',
         'status',
-        'price'
+        'price',
+        'transaction_id'
     ];
 }

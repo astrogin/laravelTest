@@ -36,9 +36,8 @@ class StatusTransaction extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(Transaction $transaction)
     {
-        $transactionService = new Transaction();
-        $transactionService->run();
+        $transaction->run();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Services\PaymentSystems\Transaction;
 
 use App\Order;
 use App\Services\PaymentSystems\PaymentSystemInterface;
+use App\User;
 
 class Transaction
 {
@@ -20,7 +21,16 @@ class Transaction
         foreach ($transactions as $transaction) {
             $braintreeTransaction = $this->braintree->find($transaction->transaction_id);
             if ($braintreeTransaction->status === 'settled') {
+                $user = User::find($transaction->user_id);
+                if ($user) {
+                    $user->plan_id = $transaction->plan_id;
+                    $user->save();
+                }
                 $transaction->status = 'completed';
+                $transaction->save();
+            }
+            if ($braintreeTransaction->status !== 'submitted_for_settlement' && $braintreeTransaction->status !== 'settling') {
+                $transaction->status = 'failed';
                 $transaction->save();
             }
         }
