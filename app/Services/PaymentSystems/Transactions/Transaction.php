@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PaymentSystems\Transaction;
+namespace App\Services\PaymentSystems\Transactions;
 
 use App\Order;
 use App\Services\PaymentSystems\PaymentSystemInterface;
