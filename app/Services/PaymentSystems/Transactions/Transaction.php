@@ -28,6 +28,7 @@ class Transaction
                 }
                 $transaction->status = 'completed';
                 $transaction->save();
+                return;
             }
             if ($braintreeTransaction->status !== 'submitted_for_settlement' && $braintreeTransaction->status !== 'settling') {
                 $transaction->status = 'failed';
