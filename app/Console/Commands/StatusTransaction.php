@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\PaymentSystems\Transaction\Transaction;
+use App\Services\PaymentSystems\Transactions\Transaction;
 use Illuminate\Console\Command;
 
 class StatusTransaction extends Command
